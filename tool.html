@@ -1,0 +1,225 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>搭子陪写 · 生成专属提示词</title>
+<meta name="description" content="搭子陪写：选场景、点选预设或自己填，实时生成结构化中文提示词，一键复制。">
+<link rel="canonical" href="https://caelusmv.github.io/prompt-hub/tool.html">
+<meta property="og:title" content="搭子陪写 · 生成专属提示词">
+<meta property="og:description" content="搭子陪写：选场景、点选预设或自己填，实时生成结构化中文提示词，一键复制。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://caelusmv.github.io/prompt-hub/tool.html">
+<meta property="og:site_name" content="提示词搭子">
+<meta property="og:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="搭子陪写 · 生成专属提示词">
+<meta name="twitter:description" content="搭子陪写：选场景、点选预设或自己填，实时生成结构化中文提示词，一键复制。">
+<meta name="twitter:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="site"><div class="wrap site-head">
+  <div class="brand">
+    <a class="logo" href="index.html">提示词搭子<span> PromptDazi</span></a>
+    <p class="tag">中文精选提示词 · 一键复制 · 陪你用好 AI</p>
+  </div>
+  <a class="tool-link active" href="tool.html">✍ 搭子陪写</a>
+</div></header>
+<nav class="cats"><div class="wrap"><a class="navlink " href="category/coding.html">编程<span class="count">45</span></a><a class="navlink " href="category/marketing.html">营销<span class="count">25</span></a><a class="navlink " href="category/image.html">图像<span class="count">41</span></a><a class="navlink " href="category/video.html">视频<span class="count">33</span></a><button type="button" class="navlink pick-btn" data-pick-toggle>★ 搭子精选<span class="count">14</span></button></div></nav>
+<main class="wrap"><section class="tool-hero">
+    <h1>搭子陪写 · 三步拿到你的专属提示词</h1>
+    <p class="tool-sub">选场景 → 点选预设（或自己填）→ 实时生成结构化中文 prompt，一键复制。搭子陪你一起把需求写清楚，比从库里翻更快、更对味。</p>
+  </section>
+  <div class="wizard">
+    <aside class="scenarios">
+      <h2>① 选个场景</h2>
+      <div class="scn-list" id="scnList"></div>
+    </aside>
+    <div class="workspace">
+      <h2>② 填几项</h2>
+      <div class="fields" id="fields"></div>
+      <div class="preview-box">
+        <div class="preview-head"><span>③ 实时预览</span><button id="resetBtn" type="button">重置</button></div>
+        <pre id="out"></pre>
+        <button id="copyTool" type="button">复制提示词</button>
+      </div>
+    </div>
+  </div>
+  <div class="tool-tip">
+    <b>为什么是这种结构？</b> 好的提示词通常包含四块：<b>角色</b>（你是谁）+ <b>任务</b>（要做什么）+ <b>约束</b>（要求 / 避免）+ <b>输出格式</b>。搭子陪写自动帮你拼出这个结构，生成的内容也符合「搭子精选」的入选标准。
+  </div>
+  <script>
+  (function(){
+    function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+    var SCENARIOS = [
+      { id:'xhs', icon:'📕', name:'小红书种草笔记', cat:'营销', blurb:'真实测评口吻的种草文',
+        fields:[
+          {k:'product',l:'产品 / 主题',opts:['平价护肤精华','显瘦通勤穿搭','便携咖啡机','入门降噪耳机']},
+          {k:'audience',l:'目标人群',opts:['学生党 / 油皮女生','精致妈妈','租房年轻人','熬夜打工人']},
+          {k:'selling',l:'核心卖点 / 痛点',opts:['控油不闷痘、性价比高','显瘦显高、好搭配','省时、口感接近现磨','安静、佩戴舒适']},
+          {k:'tone',l:'风格语气',opts:['真实测评、闺蜜安利','接地气、幽默','专业成分党','情绪共鸣、治愈']} ],
+        tpl:[ '你是一位深耕小红书的种草文案高手，擅长用真实、有代入感的语气写笔记。', '',
+              '任务：为一款「{{product}}」写一篇小红书种草笔记。', '',
+              '目标人群：{{audience}}', '核心卖点 / 痛点：{{selling}}', '风格语气：{{tone}}', '',
+              '要求：', '- 标题带情绪钩子（如"后悔没早买""油皮亲测"），控制在 20 字内', '- 正文用第一人称真实体验口吻，分点讲清 痛点 → 产品 → 效果', '- 穿插 emoji，段落短小，适合手机阅读', '- 结尾加互动引导（提问 / 求链接）', '',
+              '输出格式：标题 + 正文（含 3-5 个 emoji 分段）+ 相关话题标签 #xxx' ] },
+
+      { id:'title', icon:'📰', name:'公众号爆款标题', cat:'营销', blurb:'高点击的标题组合',
+        fields:[
+          {k:'topic',l:'文章主题',opts:['普通人如何存下第一桶金','30 岁转行还来得及吗','被低估的国产好物','普通人也能上手的 AI 工具']},
+          {k:'audience',l:'目标人群',opts:['刚工作的年轻人','职场中层','新手爸妈','自由职业者']},
+          {k:'count',l:'标题数量',opts:['8','10','12','15']},
+          {k:'style',l:'风格偏好',opts:['悬念','数字盘点','痛点共鸣','对比反差']} ],
+        tpl:[ '你是一位公众号爆款标题写手。', '',
+              '任务：围绕主题「{{topic}}」为「{{audience}}」生成 {{count}} 个公众号标题。', '',
+              '风格偏好：{{style}}', '',
+              '要求：', '- 每个标题独立成行，控制在 30 字内', '- 运用数字、痛点、悬念或对比增强点击欲', '- 避免标题党与夸大，承诺内容能兑现', '- 标注每个标题使用的技法（如 [数字] [悬念]）', '',
+              '输出格式：标题列表，每条后附技法标注' ] },
+
+      { id:'ecom', icon:'🛍️', name:'电商白底产品图', cat:'图像', blurb:'干净的商业产品图',
+        fields:[
+          {k:'product',l:'产品',opts:['无线蓝牙耳机','极简陶瓷马克杯','纯棉基础款 T 恤','便携蓝牙音箱']},
+          {k:'material',l:'材质 / 颜色',opts:['磨砂白塑料','原木 + 哑光釉','精梳棉、米白','阳极氧化铝、深空灰']},
+          {k:'composition',l:'构图',opts:['居中平铺','45° 俯拍','正侧面特写','成组摆拍']},
+          {k:'quality',l:'画质要求',opts:['8k 商业摄影','4k 产品图','超高细节、柔光','棚拍级、锐利']} ],
+        tpl:[ '你是一位电商产品图摄影师。', '',
+              '任务：生成一张「{{product}}」的白底商业产品图。', '',
+              '产品描述：{{material}}', '构图：{{composition}}', '画质：{{quality}}', '',
+              '要求：', '- 纯白背景（#FFFFFF），无阴影或柔和投影', '- 产品清晰居中，边缘锐利，突出材质质感', '- 光线均匀柔和，避免反光过曝', '- 风格：写实、干净、适合电商详情页', '',
+              '输出格式：英文 Midjourney / SD 提示词（主体 + 材质 + 构图 + 画质 + 负向词）', '负向词：杂乱背景、文字、水印、低分辨率、变形' ] },
+
+      { id:'portrait', icon:'🎬', name:'电影感人像肖像', cat:'图像', blurb:'有故事感的人像',
+        fields:[
+          {k:'subject',l:'人物描述',opts:['沧桑的老渔夫','都市夜归的女孩','退伍老兵','雨中撑伞的老人']},
+          {k:'mood',l:'风格 / 情绪',opts:['孤独、暖光怀旧','冷峻、疏离','温柔、希望','压抑、沉思']},
+          {k:'light',l:'光影',opts:['逆光','伦勃朗光','窗边自然光','霓虹环境光']},
+          {k:'comp',l:'构图',opts:['特写','环境人像','半身中景','背影剪影']} ],
+        tpl:[ '你是一位电影感肖像摄影师。', '',
+              '任务：生成一张「{{subject}}」的电影感人像。', '',
+              '情绪氛围：{{mood}}', '光影：{{light}}', '构图：{{comp}}', '',
+              '要求：', '- 电影级调色，胶片颗粒感，浅景深', '- 面部表情自然有故事感，眼神光到位', '- 色调统一（暖调 / 冷调依情绪而定）', '- 高细节、8k、肖像摄影质感', '',
+              '输出格式：英文提示词（主体 + 情绪 + 光影 + 构图 + 画质 + 负向词）', '负向词：卡通、低质、畸变、过度磨皮、文字' ] },
+
+      { id:'code', icon:'💻', name:'代码审查与重构', cat:'编程', blurb:'专业视角的代码点评',
+        fields:[
+          {k:'lang',l:'编程语言',opts:['Python','JavaScript / TypeScript','Go','Java']},
+          {k:'purpose',l:'代码用途',opts:['处理用户上传的 CSV','调用第三方支付 API','定时同步数据库','解析前端表单提交']},
+          {k:'focus',l:'关注点',opts:['性能','可读性','安全性','边界与异常']},
+          {k:'output',l:'期望输出',opts:['逐段点评 + 改进代码','仅给重构后代码','问题清单 + 理由','带复杂度评估']} ],
+        tpl:[ '你是一位资深 {{lang}} 工程师，擅长代码审查与重构。', '',
+              '任务：审查下面这段用于「{{purpose}}」的代码，并给出改进方案。', '',
+              '审查重点：{{focus}}', '期望输出：{{output}}', '',
+              '要求：', '- 先指出问题（正确性 / 性能 / 可读性 / 安全性），再给改进', '- 给出重构后的完整代码，并说明改动理由', '- 标注潜在边界情况与异常处理建议', '- 如涉及性能，给出复杂度评估', '',
+              '输出格式：问题清单 + 重构代码 + 改动说明' ] },
+
+      { id:'blog', icon:'📝', name:'技术博客大纲', cat:'编程', blurb:'结构清晰的长文框架',
+        fields:[
+          {k:'topic',l:'主题',opts:['用 Rust 写命令行工具','从零搭一个 CI 流水线','前端状态管理选型','大模型本地部署踩坑']},
+          {k:'level',l:'读者水平',opts:['有基础的中级开发者','刚入门的新手','资深架构师','跨行业转码者']},
+          {k:'length',l:'篇幅',opts:['3000 字 / 10 节','5000 字 / 15 节','短篇 2000 字','系列文第一篇']},
+          {k:'focus',l:'内容重点',opts:['实战、踩坑','原理剖析','最佳实践','对比评测']} ],
+        tpl:[ '你是一位技术博客作者。', '',
+              '任务：为「{{topic}}」写一篇面朝「{{level}}」的技术博客大纲。', '',
+              '篇幅规划：{{length}}', '内容重点：{{focus}}', '',
+              '要求：', '- 标题吸引人且准确，不夸大', '- 结构清晰：背景 → 核心概念 → 实战 → 踩坑 → 总结', '- 每节给出要点与可落地的示例代码提示', '- 结尾有总结与延伸阅读建议', '',
+              '输出格式：分级大纲（一 / 二 / 三 + 子点），每节附 1 句要点说明' ] },
+
+      { id:'story', icon:'🎥', name:'短视频分镜脚本', cat:'视频', blurb:'可落地的分镜表',
+        fields:[
+          {k:'theme',l:'主题',opts:['周末 citywalk','减脂餐的一天','宠物日常','新手租房改造']},
+          {k:'platform',l:'平台',opts:['抖音','小红书','B站','视频号']},
+          {k:'duration',l:'时长',opts:['30 秒','60 秒','15 秒','90 秒']},
+          {k:'style',l:'风格',opts:['松弛 vlog','快节奏卡点','治愈系','硬核教程']} ],
+        tpl:[ '你是一位短视频编导。', '',
+              '任务：为「{{theme}}」写一个适配「{{platform}}」的短视频分镜脚本。', '',
+              '时长：{{duration}}', '风格：{{style}}', '',
+              '要求：', '- 开篇 3 秒强钩子留住用户', '- 分镜含：画面描述 / 台词或旁白 / 运镜 / 时长', '- 节奏符合平台调性，BGM 与情绪匹配', '- 结尾有行动引导（关注 / 评论）', '',
+              '输出格式：分镜表（序号 | 画面 | 台词 | 运镜 | 时长）' ] },
+
+      { id:'voice', icon:'🎙️', name:'抖音口播文案', cat:'视频', blurb:'念得出来的口播稿',
+        fields:[
+          {k:'topic',l:'产品 / 话题',opts:['降噪耳机','智能手表','平价护肤品','通勤好物']},
+          {k:'audience',l:'目标人群',opts:['通勤党','学生党','精致妈妈','租房青年']},
+          {k:'hook',l:'开头钩子',opts:['别再花冤枉钱','我后悔没早点买','这东西真被低估了','听完再决定']},
+          {k:'duration',l:'时长',opts:['40 秒','30 秒','60 秒','20 秒']} ],
+        tpl:[ '你是一位抖音口播文案写手。', '',
+              '任务：为「{{topic}}」写一段面向「{{audience}}」的口播文案。', '',
+              '开头钩子：{{hook}}', '时长：{{duration}}', '',
+              '要求：', '- 前 3 秒用钩子或反常识留住人', '- 口语化、有节奏、适合念出来', '- 中间埋 1-2 个记忆点，结尾引导互动', '- 标注建议停顿 / BGM 位置', '',
+              '输出格式：逐句口播稿 + 标注（停顿 / 重音 / BGM）' ] }
+    ];
+
+    var listEl = document.getElementById('scnList');
+    var fieldsEl = document.getElementById('fields');
+    var outEl = document.getElementById('out');
+    var labels = {};
+    SCENARIOS.forEach(function(s){ s.fields.forEach(function(f){ labels[f.k] = f.l; }); });
+
+    var current = null;
+    var vals = {};
+
+    function renderList(){
+      listEl.innerHTML = '';
+      SCENARIOS.forEach(function(s){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'scn' + (current === s ? ' active' : '');
+        if(current === s) b.setAttribute('aria-current','true');
+        b.innerHTML = '<div><span class="name">' + s.icon + ' ' + esc(s.name) + '</span><span class="cat">' + esc(s.cat) + '</span></div><div class="blurb">' + esc(s.blurb) + '</div>';
+        b.onclick = function(){ select(s); };
+        listEl.appendChild(b);
+      });
+    }
+
+    function select(s){
+      current = s; vals = {};
+      renderList();
+      fieldsEl.innerHTML = '';
+      s.fields.forEach(function(f){
+        var d = document.createElement('div'); d.className = 'field';
+        var lab = document.createElement('label'); lab.textContent = f.l; d.appendChild(lab);
+        var chips = document.createElement('div'); chips.className = 'chips'; chips.setAttribute('role','radiogroup'); chips.setAttribute('aria-label', f.l);
+        (f.opts || []).forEach(function(opt){
+          var c = document.createElement('button'); c.type = 'button'; c.className = 'chip'; c.textContent = opt;
+          c.setAttribute('role','radio'); c.setAttribute('aria-checked','false');
+          c.addEventListener('click', function(){
+            var wasOn = c.classList.contains('on');
+            chips.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-checked','false'); });
+            if(!wasOn){ c.classList.add('on'); c.setAttribute('aria-checked','true'); }
+            var ci = d.querySelector('.custom'); if(ci){ ci.value = ''; }
+            vals[f.k] = wasOn ? '' : opt;
+            update();
+          });
+          chips.appendChild(c);
+        });
+        d.appendChild(chips);
+        var inp = document.createElement('input'); inp.type = 'text'; inp.className = 'custom'; inp.placeholder = '或自己填写（留空则用上面的选择）'; inp.dataset.k = f.k;
+        inp.setAttribute('aria-label', f.l + '（自定义）');
+        inp.addEventListener('input', function(){
+          chips.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-checked','false'); });
+          vals[f.k] = inp.value;
+          update();
+        });
+        d.appendChild(inp); fieldsEl.appendChild(d);
+      });
+      update();
+    }
+
+    function update(){
+      if(!current){ outEl.textContent = ''; return; }
+      var txt = current.tpl.join(String.fromCharCode(10)).replace(/{{(\w+)\}}/g, function(_, k){
+        var v = (vals[k] || '').trim();
+        return v ? v : '（请选择或填写“' + labels[k] + '”）';
+      });
+      outEl.textContent = txt;
+    }
+
+    var copyBtn = document.getElementById('copyTool');
+    if(copyBtn){ copyBtn.addEventListener('click', function(){ var t = outEl.textContent; if(window.__copy){ window.__copy(t, copyBtn); } else if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(function(){ copyBtn.textContent='已复制 ✓'; setTimeout(function(){ copyBtn.textContent='复制提示词'; },1500); }); } else { copyBtn.textContent='请手动复制'; } }); }
+    document.getElementById('resetBtn').addEventListener('click', function(){ if(current){ select(current); } });
+
+    select(SCENARIOS[0]);
+  })();
+  </script></main>
+<footer class="site"><div class="wrap">
+  <p>内容来自公开开源仓库与本站 AI 原生生成，均保留原作者署名与协议。本页仅作聚合索引，版权归原作者所有。</p>
+</div></footer>
+<script src="assets/app.js?v=3"></script>
+</body></html>
