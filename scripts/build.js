@@ -730,6 +730,8 @@ ${CATEGORIES.filter(c => (byCat[c]||[]).length > 0).map(c => {
     '\n</urlset>\n';
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap, 'utf8');
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`, 'utf8');
+  // GitHub Pages 默认用 Jekyll 处理，遇到 {{ }} / {% %} 或下划线目录会出错；加 .nojekyll 让它原样托管静态文件
+  fs.writeFileSync(path.join(OUT, '.nojekyll'), '', 'utf8');
   const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><rect width="1200" height="630" fill="url(#g)"/><text x="80" y="300" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="92" font-weight="800" fill="#ffffff">提示词搭子</text><text x="84" y="372" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="40" fill="#dbeafe">中文精选提示词 · 一键复制即用</text><text x="84" y="470" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="32" fill="#bfdbfe">PromptDazi · 陪你用好 AI</text></svg>`;
   fs.writeFileSync(path.join(OUT, 'assets', 'og.svg'), ogSvg, 'utf8');
 

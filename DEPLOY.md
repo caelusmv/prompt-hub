@@ -1,56 +1,49 @@
 # 部署到 GitHub Pages（免费 · 自动）
 
 本仓库是纯静态站点，`scripts/build.js` 把 `data/` 构建成 `public/`。
-通过 GitHub Actions 实现：**推送源码 → 自动构建 → 自动部署到 GitHub Pages**，每日自动化生成新内容后也会自动推送上线。
+通过 **GitHub Pages** 部署：每次 `git push` 到 `main`，GitHub Actions 自动构建并把 `public/` 发布到 `gh-pages` 分支。每日自动化生成新内容后也会自动推送上线。
 
-## 一、首次部署（你来做，约 5 分钟）
+线上地址：`https://<你的用户名>.github.io/prompt-hub/`
+（本仓库即 `https://caelusmv.github.io/prompt-hub/`）
 
-### 1. 在 GitHub 新建仓库
-- 登录 GitHub → New repository
-- 仓库名随意，建议 `prompt-hub`（若想用 `https://你的名.github.io/` 这种用户页，仓库名必须叫 `你的名.github.io`）
-- 设为 **Public**（GitHub Pages 免费版要求公开仓库）
-- 不要勾选 "Add a README"（本地已有）
+## 一、你只需要做一次的仓库设置
 
-### 2. 本地首次推送（已帮你 `git init` + 初始提交，只需加远程并推送）
-在 `prompt-hub/` 目录下执行：
+1. 仓库已建好：`https://github.com/caelusmv/prompt-hub.git`
+2. 开启 Pages：仓库 **Settings → Pages → Build and deployment → Source 选 "Deploy from a branch" → Branch 选 `gh-pages` / 目录 `(root)` → Save**。
+   - 首次推送后 Actions 跑完，这里会出现绿色已发布提示和公网地址。
+3. （可选）买域名 `promptdazi.cn` 后，在 Pages 里填 Custom domain，并把 `scripts/build.js` 顶部的 `SITE_URL` 默认值改成你的域名、重新部署。
+
+> 站点使用相对路径，放在 `/prompt-hub/` 子路径下也能正常加载 CSS/JS，无需额外配置。
+
+## 二、本地推送（首次 / 手动更新）
+
+在本机 `prompt-hub/` 目录：
+
 ```bash
-git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-git branch -M main
+git add -A
+git commit -m "feat: 提示词搭子静态站 + GitHub Pages 部署"
 git push -u origin main
 ```
-推送后 GitHub Actions 会自动运行，约 1 分钟构建完成。
 
-### 3. 开启 GitHub Pages
-- 进入仓库 **Settings → Pages**
-- Source 选 **Deploy from a branch**
-- Branch 选 **gh-pages** ，目录 **/ (root)**
-- 保存
-- 几秒后访问：`https://<你的用户名>.github.io/<仓库名>/`
+推送后 GitHub Actions 自动构建并部署，通常 1 分钟内上线。
+可在仓库 **Actions** 标签页看到实时进度；失败会有红色 ✗ 与日志。
 
-### 4. 让搜索引擎收录（拿到地址后做）
-- **百度站长平台**：https://ziyuan.baidu.com/ → 添加站点 → 选「HTML 标签验证」或「CNAME 验证」→ 把验证代码/记录发我，我帮你加到页面或 DNS → 提交 `sitemap.xml`（`https://<你的名>.github.io/<仓库>/sitemap.xml`）
-- **Google Search Console**：https://search.google.com/search-console → URL 前缀填上述地址 → 同样验证 → 提交 sitemap
-- 收录后，站点每天的原创中文 prompt 会被百度/Google 抓到，形成搜索流量。
-
-## 二、每日自动化（已配置，自动上线）
+## 三、每日自动化（已配置，自动上线）
 
 自动化 `automation-1783481910434` 每天 09:00：
 1. 生成 10 条原创中文 prompt（遵守「搭子精选 ≤10%」约束）
-2. 运行 `generate.js` → 更新 `data/generated.json`
-3. 运行 `build.js` → 本地重建 `public/`
-4. `git add` 数据/脚本 → `commit` → `push origin main` → **触发上面的 Actions 自动部署**
+2. `generate.js` → 更新 `data/generated.json`
+3. `git add data/generated.json ... && git commit && git push origin main`
+   → 触发 GitHub Actions 自动构建并部署到 GitHub Pages
+   - 若 push 失败（无凭证/网络不可达）：自动化会**明确告警**并请你手动 `git push`，**不会静默失败**。
 
-> ⚠️ 前提：WorkBuddy 自动化运行环境需能访问你的 GitHub（即已配置 git 远程 + 凭证/SSH key）。
-> 若 push 被拒绝（无凭证/无远程），自动化会明确告警并跳过部署，**不会静默失败**；此时你手动 `git push` 一次即可恢复自动链路。
+## 四、让搜索引擎收录（拿到地址后做）
 
-## 三、以后买域名（可选，升级品牌）
+- **百度站长平台**：https://ziyuan.baidu.com/ → 添加站点 `https://caelusmv.github.io/prompt-hub` → HTML 标签/CNAME 验证 → 提交 `sitemap.xml`（`https://caelusmv.github.io/prompt-hub/sitemap.xml`）
+- **Google Search Console**：https://search.google.com/search-console → 同样添加并验证 → 提交 sitemap
+- 收录后，站点每天的原创中文 prompt 会被抓到，形成搜索流量。
 
-花 30–55 元/年买 `promptdazi.cn` 后：
-- 改 `scripts/build.js` 顶部 `SITE_URL` 为你域名，或部署时在 Actions 注入 `SITE_URL` 环境变量
-- 仓库 Settings → Pages → Custom domain 填 `promptdazi.cn`，DNS 加 CNAME 指向 `<你的名>.github.io`
-- 因服务器在境外，**无需 ICP 备案**即可用国内域名访问
-
-## 四、本地预览（不部署也能看）
+## 五、本地预览（不部署也能看）
 
 ```bash
 cd prompt-hub
