@@ -1,0 +1,12 @@
+{
+  "name": "prompt-hub",
+  "version": "0.1.0",
+  "private": true,
+  "description": "提示词搭子：中文精选提示词库，一键复制。合规采集开源 prompt + AI 原生生成，按场景分类，静态站可直接托管。",
+  "scripts": {
+    "collect": "node scripts/collect.js",
+    "build": "node scripts/build.js",
+    "dev": "node scripts/collect.js && node scripts/build.js",
+    "serve": "python -m http.server 3000 --directory public"
+  }
+}

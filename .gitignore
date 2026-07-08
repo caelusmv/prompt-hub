@@ -1,0 +1,9 @@
+# 构建产物（由 GitHub Actions 自动构建并部署，不提交源码产物）
+/public/
+
+# 每日自动化临时批次文件（不入库）
+data/_*.json
+_newbatch.json
+
+# 采集缓存
+.cache/
