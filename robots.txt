@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://caelusmv.github.io/prompt-hub/sitemap.xml
+Sitemap: https://promptdazi.eu.org/sitemap.xml
