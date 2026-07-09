@@ -11,6 +11,8 @@ const CATEGORIES = ['编程', '营销', '图像', '视频', '综合'];
 // 英文 slug 避免中文文件名在 file:// 协议下导航失败
 const CAT_SLUG = { '编程': 'coding', '营销': 'marketing', '图像': 'image', '视频': 'video', '综合': 'general' };
 const CAT_ICON = { '编程': '💻', '营销': '📣', '图像': '🎨', '视频': '🎬', '综合': '🧩' };
+// 首页 / 分类 / 详情页等处的用户-facing 文案，用领域黑话替换中文分类名，URL/字段仍用原分类
+const CAT_DISPLAY = { '编程': 'Vibe Coding', '营销': '电商', '图像': '文生图', '视频': 'AI漫剧', '综合': '综合' };
 function catSlug(c) { return CAT_SLUG[c] || enc(c); }
 
 function esc(s) {
@@ -614,7 +616,7 @@ function nav(active, base, isIndex) {
     if (n === 0) return ''; // 隐藏空分类
     const cls = c === active ? 'active' : '';
     const href = c === '综合' ? base + 'index.html' : base + 'category/' + catSlug(c) + '.html';
-    return `<a class="navlink ${cls}" href="${href}">${esc(c)}<span class="count">${n}</span></a>`;
+    return `<a class="navlink ${cls}" href="${href}">${esc(CAT_DISPLAY[c] || c)}<span class="count">${n}</span></a>`;
   }).join('');
   return `<nav class="cats"><div class="wrap">${links}${pickBtn}</div></nav>`;
 }
@@ -879,7 +881,7 @@ function card(it, base) {
   const desc = descText(it);
   const tags = Array.isArray(it.tags) ? it.tags.join(' ') : '';
   return `<a class="card" href="${base}prompt/${esc(it.id)}.html" data-cat="${esc(it.category)}" data-pick="${it.editorPick ? '1' : ''}" data-text="${esc((it.title + ' ' + desc + ' ' + (it.useCase || '') + ' ' + tags).toLowerCase())}">
-    <div class="badges"><span class="badge cat">${esc(it.category)}</span>${badgeKind(it)}${gen}${badgeDiff(it)}${badgePick(it)}</div>
+    <div class="badges"><span class="badge cat">${esc(CAT_DISPLAY[it.category] || it.category)}</span>${badgeKind(it)}${gen}${badgeDiff(it)}${badgePick(it)}</div>
     <h3>${esc(it.title)}</h3>
     <p>${esc(desc)}</p>
     <div class="meta">${stars(it.score)} ${esc(it.author || '匿名')} · ⭐${it.stars || 0}</div>
@@ -941,7 +943,7 @@ function build() {
 ${CATEGORIES.filter(c => (byCat[c]||[]).length > 0).map(c => {
   const slug = catSlug(c);
   const href = c === '综合' ? 'index.html' : 'category/' + slug + '.html';
-  return `      <a class="cat-card" href="${href}">${CAT_ICON[c] || '📁'} ${esc(c)}提示词<span class="em">${byCat[c].length}</span></a>`;
+  return `      <a class="cat-card" href="${href}">${CAT_ICON[c] || '📁'} ${esc(CAT_DISPLAY[c] || c)}提示词<span class="em">${byCat[c].length}</span></a>`;
 }).join('\n')}
     </div>
     <a class="cta-tool" href="tool.html">✍ 不知道怎么写？让搭子陪你 3 步生成专属提示词 <span class="arrow">→</span></a>
@@ -960,18 +962,18 @@ ${CATEGORIES.filter(c => (byCat[c]||[]).length > 0).map(c => {
   CATEGORIES.forEach(c => {
     if (!byCat[c] || byCat[c].length === 0) return; // 跳过空分类，避免生成空落地页
     const body = `<section class="hero">
-      <h1>${esc(c)}类提示词 · 共 ${byCat[c].length} 条</h1>
-      <p class="hero-sub">${esc(c)}类精选中文提示词，覆盖常见场景，一键复制即用。</p>
-      <div class="search-wrap"><input id="search" placeholder="搜索${esc(c)}提示词…" /></div>
+      <h1>${esc(CAT_DISPLAY[c] || c)}提示词 · 共 ${byCat[c].length} 条</h1>
+      <p class="hero-sub">${esc(CAT_DISPLAY[c] || c)}精选中文提示词，覆盖常见场景，一键复制即用。</p>
+      <div class="search-wrap"><input id="search" placeholder="搜索${esc(CAT_DISPLAY[c] || c)}提示词…" /></div>
     </section>
     <div class="grid list-grid">${byCat[c].map(it => card(it, '../')).join('')}</div>
     <div id="pager" class="pager"></div>
     <p id="empty" class="empty" hidden>该分类下没有匹配的提示词，换个关键词试试；或 <a href="../tool.html">让搭子陪你写 →</a></p>`;
     const catLd = [
-      { '@context': 'https://schema.org', '@type': 'CollectionPage', 'name': esc(c) + '提示词', 'url': SITE_URL + '/category/' + catSlug(c) + '.html', 'description': esc(c) + '类精选中文提示词', 'isPartOf': { '@type': 'WebSite', 'name': '提示词搭子', 'url': SITE_URL + '/' } },
-      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [ { '@type': 'ListItem', 'position': 1, 'name': '首页', 'item': SITE_URL + '/' }, { '@type': 'ListItem', 'position': 2, 'name': esc(c) + '提示词', 'item': SITE_URL + '/category/' + catSlug(c) + '.html' } ] }
+      { '@context': 'https://schema.org', '@type': 'CollectionPage', 'name': esc(CAT_DISPLAY[c] || c) + '提示词', 'url': SITE_URL + '/category/' + catSlug(c) + '.html', 'description': esc(CAT_DISPLAY[c] || c) + '精选中文提示词', 'isPartOf': { '@type': 'WebSite', 'name': '提示词搭子', 'url': SITE_URL + '/' } },
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [ { '@type': 'ListItem', 'position': 1, 'name': '首页', 'item': SITE_URL + '/' }, { '@type': 'ListItem', 'position': 2, 'name': esc(CAT_DISPLAY[c] || c) + '提示词', 'item': SITE_URL + '/category/' + catSlug(c) + '.html' } ] }
     ];
-    fs.writeFileSync(path.join(OUT, 'category', catSlug(c) + '.html'), layout(c + '类提示词精选 | 提示词搭子', body, c, '../', c + '类精选提示词，共 ' + byCat[c].length + ' 条，中文一键复制即用。', { canonical: SITE_URL + '/category/' + catSlug(c) + '.html', ogType: 'website', ld: catLd }), 'utf8');
+    fs.writeFileSync(path.join(OUT, 'category', catSlug(c) + '.html'), layout((CAT_DISPLAY[c] || c) + '提示词精选 | 提示词搭子', body, c, '../', (CAT_DISPLAY[c] || c) + '提示词，共 ' + byCat[c].length + ' 条，中文一键复制即用。', { canonical: SITE_URL + '/category/' + catSlug(c) + '.html', ogType: 'website', ld: catLd }), 'utf8');
   });
 
   // 搭子精选落地页（全站质量天花板，占比 ≤ 10%）
@@ -1003,13 +1005,13 @@ ${CATEGORIES.filter(c => (byCat[c]||[]).length > 0).map(c => {
     const zh = it.descZh ? `<p class="desc">${esc(it.descZh)}</p>` : (it.description ? `<p class="desc">${esc(it.description)}</p>` : '');
     const en = (it.descZh && it.description) ? `<p class="desc" style="color:#94a3b8;font-size:12px;">英文原文：${esc(it.description)}</p>` : '';
     const rel = (byCat[it.category] || []).filter(x => x.id !== it.id).slice(0, 6);
-    const relatedHtml = rel.length ? `<section class="related"><h2>相关${esc(it.category)}提示词</h2><div class="grid">${rel.map(x => card(x, '../')).join('')}</div></section>` : '';
+    const relatedHtml = rel.length ? `<section class="related"><h2>相关${esc(CAT_DISPLAY[it.category] || it.category)}提示词</h2><div class="grid">${rel.map(x => card(x, '../')).join('')}</div></section>` : '';
     const body = `<article class="detail">
       <div class="breadcrumb">
         <a class="back-btn" href="../index.html">← 返回首页</a>
-        <span class="crumb"><a href="../index.html">首页</a> › <a href="../category/${catSlug(it.category)}.html">${esc(it.category)}</a> › ${esc(it.title)}</span>
+        <span class="crumb"><a href="../index.html">首页</a> › <a href="../category/${catSlug(it.category)}.html">${esc(CAT_DISPLAY[it.category] || it.category)}</a> › ${esc(it.title)}</span>
       </div>
-      <div class="badges"><span class="badge cat">${esc(it.category)}</span>${badgeKind(it)}${gen}${badgeDiff(it)}${badgePick(it)}</div>
+      <div class="badges"><span class="badge cat">${esc(CAT_DISPLAY[it.category] || it.category)}</span>${badgeKind(it)}${gen}${badgeDiff(it)}${badgePick(it)}</div>
       <h1>${esc(it.title)}</h1>
       ${zh}${en}
       <div class="meta">${stars(it.score)} <span>搭子评分</span> · 难度 ${esc(it.difficulty || '—')} · 作者 ${esc(it.author || '匿名')} · 协议 ${esc(it.license)}</div>
@@ -1032,9 +1034,9 @@ ${CATEGORIES.filter(c => (byCat[c]||[]).length > 0).map(c => {
       'author': { '@type': 'Organization', 'name': it.author || '提示词搭子' },
       'publisher': { '@type': 'Organization', 'name': '提示词搭子', 'logo': { '@type': 'ImageObject', 'url': SITE_URL + '/assets/og.svg' } },
       'datePublished': it.fetchedAt || new Date().toISOString().slice(0, 10),
-      'inLanguage': 'zh-CN', 'articleSection': it.category,
+      'inLanguage': 'zh-CN', 'articleSection': (CAT_DISPLAY[it.category] || it.category),
       'keywords': (Array.isArray(it.tags) ? it.tags.join(',') : ''),
-      'about': { '@type': 'Thing', 'name': it.category + '提示词' },
+      'about': { '@type': 'Thing', 'name': (CAT_DISPLAY[it.category] || it.category) + '提示词' },
       'mainEntity': { '@type': 'CreativeWork', 'text': it.content },
       'url': SITE_URL + '/prompt/' + enc(it.id) + '.html'
     };
@@ -1042,11 +1044,11 @@ ${CATEGORIES.filter(c => (byCat[c]||[]).length > 0).map(c => {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList',
       'itemListElement': [
         { '@type': 'ListItem', 'position': 1, 'name': '首页', 'item': SITE_URL + '/' },
-        { '@type': 'ListItem', 'position': 2, 'name': it.category, 'item': SITE_URL + '/category/' + catSlug(it.category) + '.html' },
+        { '@type': 'ListItem', 'position': 2, 'name': (CAT_DISPLAY[it.category] || it.category), 'item': SITE_URL + '/category/' + catSlug(it.category) + '.html' },
         { '@type': 'ListItem', 'position': 3, 'name': it.title, 'item': SITE_URL + '/prompt/' + enc(it.id) + '.html' }
       ]
     };
-    fs.writeFileSync(path.join(OUT, 'prompt', enc(it.id) + '.html'), layout(it.title + ' · ' + it.category + '中文提示词 | 提示词搭子', body, '__detail__', '../', descMeta, { canonical: SITE_URL + '/prompt/' + enc(it.id) + '.html', ogType: 'article', ld: [artLd, crumbLd] }), 'utf8');
+    fs.writeFileSync(path.join(OUT, 'prompt', enc(it.id) + '.html'), layout(it.title + ' · ' + (CAT_DISPLAY[it.category] || it.category) + '中文提示词 | 提示词搭子', body, '__detail__', '../', descMeta, { canonical: SITE_URL + '/prompt/' + enc(it.id) + '.html', ogType: 'article', ld: [artLd, crumbLd] }), 'utf8');
   });
 
   fs.writeFileSync(path.join(OUT, 'assets', 'style.css'), CSS, 'utf8');
