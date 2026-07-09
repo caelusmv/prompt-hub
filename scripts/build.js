@@ -450,12 +450,12 @@ const JS = `
   function aiEscape(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
   // 系统提示词（接入真实大模型时作为 system 消息传入，框死 AI 只输出提示词结构）
   window.__AI_SYSTEM_PROMPT = ${AI_SYSTEM_PROMPT_JS}.split('@@BT@@').join(String.fromCharCode(96));
-  // ===== 真实模型接入配置（默认 Agnes AI，OpenAI 兼容协议，免费） =====
-  // proxy=true：浏览器只调 Cloudflare Worker（endpoint），Agnes Key 存在 Worker 机密里，不进浏览器、解决 CORS。
+  // ===== 真实模型接入配置（默认 AI 服务，OpenAI 兼容协议） =====
+  // proxy=true：浏览器只调 Cloudflare Worker（endpoint），API Key 存在 Worker 机密里，不进浏览器、解决 CORS。
   //   见 worker/ 目录与 worker/DEPLOY-WORKER.md。endpoint 换成你部署的 Worker 地址 + /v1/chat/completions。
-  // proxy=false：浏览器直连 Agnes，需访客在「设置」面板自填 Key（或填 builtinKey 全站免填，但会暴露在源码）。
+  // proxy=false：浏览器直连 AI 服务，需访客在「设置」面板自填 Key（或填 builtinKey 全站免填，但会暴露在源码）。
   var AI_CONFIG = {
-    endpoint: 'https://apihub.agnes-ai.com/v1/chat/completions', // Agnes 直连（CORS 已放行 *）
+    endpoint: 'https://apihub.agnes-ai.com/v1/chat/completions', // 直连端点（CORS 已放行）
     model: 'agnes-2.0-flash',
     keyStorage: 'pd_ai_key',
     builtinKey: 'sk-DRCwwtVFRiQadqXDlk5sQC7M4cD34RW9fhSfAd63jwSFyKgK', // 全站内置 Key（会暴露在源码，免费低流量可接受）
@@ -587,9 +587,9 @@ const JS = `
   function aiUpdateNote(){
     if(!aiNote) return;
     if(AI_CONFIG.proxy){
-      aiNote.textContent = '已连接 Agnes AI（经代理）· 真实生成 · 只输出结构化提示词（Markdown 代码块）';
+      aiNote.textContent = '已连接 AI 服务（经代理）· 真实生成 · 只输出结构化提示词（Markdown 代码块）';
     } else if(aiHasKey()){
-      aiNote.textContent = '已连接 Agnes AI · 真实生成 · 只输出结构化提示词（Markdown 代码块）';
+      aiNote.textContent = '已连接 AI 服务 · 真实生成 · 只输出结构化提示词（Markdown 代码块）';
     } else {
       aiNote.textContent = '只生成提示词 · 不闲聊 · 只输出结构化提示词（Markdown 代码块）';
     }
@@ -932,7 +932,7 @@ function build() {
         <button type="button" class="ai-chip" data-idea="给我一段出图提示词">出图提示词</button>
         <button type="button" class="ai-chip" data-idea="帮我写公众号排版助手提示词">公众号排版助手</button>
       </div>
-      <p class="ai-note" id="aiNote">已连接 Agnes AI · 真实生成 · 只输出结构化提示词（Markdown 代码块）</p>
+      <p class="ai-note" id="aiNote">已连接 AI 服务 · 真实生成 · 只输出结构化提示词（Markdown 代码块）</p>
     </div>
   </section>
   <section class="hero">
