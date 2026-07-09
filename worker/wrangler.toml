@@ -1,0 +1,12 @@
+name = "agnes-proxy"
+main = "index.js"
+compatibility_date = "2024-09-23"
+
+# 可选：限制只有你的站点能调用，防别人白嫖免费额度。
+# 取消下面两行注释，把域名改成你的（上线后填 promptdazi.cn；本地测试 localhost 已默认放行）
+# [vars]
+# ALLOWED_ORIGIN = "https://promptdazi.cn"
+
+# 注意：AGNES_API_KEY 是「机密」，不要用 [vars] 明文写！
+# 用命令设置：  wrangler secret put AGNES_API_KEY
+# 然后按提示粘贴你的 Agnes Key（sk-...）
