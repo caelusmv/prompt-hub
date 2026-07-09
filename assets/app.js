@@ -114,12 +114,12 @@
   function aiEscape(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
   // 系统提示词（接入真实大模型时作为 system 消息传入，框死 AI 只输出提示词结构）
   window.__AI_SYSTEM_PROMPT = "# 角色设定\n你是一位世界级的提示词工程专家（Prompt Engineering Expert），精通文本生成、图像生成、视频生成、代码生成、Agent 工作流五大类提示词的撰写与优化。\n\n# 任务\n用户会给你一句简短的想法或需求。你要直接为他生成【最终可复制使用的那条提示词本身】——不要写\"角色设定\"\"任务目标\"\"处理流程\"\"约束规则\"\"示例\"之类的\"提示词生成器\"元框架，也不要输出任何需求分析或解释文字。只给最终提示词。\n\n# 输出规则\n1. 先判断用户想要哪类产出：图像 / 视频 / 代码 / 文本写作 / Agent 工作流。\n2. 直接给出最终提示词，按类型采用最实用的格式：\n   - 图像、视频类：依次给出「中文提示词」「英文提示词」（英文用逗号分隔的关键词/短语结构，必要时用 :: 权重标记）、「参数建议」（画幅比例 / 模型版本 / 运镜参数等）、「风格说明」（一句话说明视觉风格与适用场景）。\n   - 代码类：直接给出可运行代码，附中文注释与简要用法。\n   - 文本写作类：直接给出「角色 + 任务 + 关键约束 + 输出格式」的中文提示词。\n   - Agent 工作流类：直接给出节点流程与每个节点的指令。\n3. 将最终提示词主体用三个反引号包裹的 Markdown 代码块输出，便于一键复制。\n4. 严格禁止输出\"需求分析\"\"第一部分\"\"第二部分\"\"角色设定\"\"任务目标\"等字样，不闲聊。\n\n# 示例（图像类，用户输入\"小女孩在海边骑马\"时的期望输出）\n**中文提示词**：一位约 8 岁的小女孩身穿亚麻色连衣裙与软皮短靴，骑在一匹温顺的浅棕色马背上沿金色沙滩缓行；背景是柔和的晨雾与微浪拍岸，远处低矮云层；自然侧光勾勒轮廓，浅景深突出主体，整体电影级治愈写实摄影风格。\n**英文提示词**：An 8-year-old girl wearing a linen dress and soft leather boots, riding a calm light brown horse along a golden sandy beach; soft morning mist, gentle waves, distant low clouds; natural side lighting, shallow depth of field, cinematic healing realistic photography, highly detailed, 8k.\n**参数建议**：--ar 16:9 --v 6.0 --style raw --q 2\n**风格说明**：电影级写实摄影，强调自然光影与情感氛围，适合高精度出图与故事感构图。".split('@@BT@@').join(String.fromCharCode(96));
-  // ===== 真实模型接入配置（默认 Agnes AI，OpenAI 兼容协议，免费） =====
-  // proxy=true：浏览器只调 Cloudflare Worker（endpoint），Agnes Key 存在 Worker 机密里，不进浏览器、解决 CORS。
+  // ===== 真实模型接入配置（默认 AI 服务，OpenAI 兼容协议） =====
+  // proxy=true：浏览器只调 Cloudflare Worker（endpoint），API Key 存在 Worker 机密里，不进浏览器、解决 CORS。
   //   见 worker/ 目录与 worker/DEPLOY-WORKER.md。endpoint 换成你部署的 Worker 地址 + /v1/chat/completions。
-  // proxy=false：浏览器直连 Agnes，需访客在「设置」面板自填 Key（或填 builtinKey 全站免填，但会暴露在源码）。
+  // proxy=false：浏览器直连 AI 服务，需访客在「设置」面板自填 Key（或填 builtinKey 全站免填，但会暴露在源码）。
   var AI_CONFIG = {
-    endpoint: 'https://apihub.agnes-ai.com/v1/chat/completions', // Agnes 直连（CORS 已放行 *）
+    endpoint: 'https://apihub.agnes-ai.com/v1/chat/completions', // 直连端点（CORS 已放行）
     model: 'agnes-2.0-flash',
     keyStorage: 'pd_ai_key',
     builtinKey: 'sk-DRCwwtVFRiQadqXDlk5sQC7M4cD34RW9fhSfAd63jwSFyKgK', // 全站内置 Key（会暴露在源码，免费低流量可接受）
@@ -127,7 +127,7 @@
   };
   function aiGetKey(){ try { return localStorage.getItem(AI_CONFIG.keyStorage) || ''; } catch(e){ return ''; } }
   function aiSetKey(k){ try { if(k) localStorage.setItem(AI_CONFIG.keyStorage, k); else localStorage.removeItem(AI_CONFIG.keyStorage); } catch(e){} }
-  function aiHasKey(){ return !!aiGetKey(); }
+  function aiHasKey(){ return !!(aiGetKey() || AI_CONFIG.builtinKey); }
   function aiAdd(role, html){
     if(!aiMsgs) return;
     var wrap = document.createElement('div'); wrap.className = 'ai-msg ' + role;
@@ -216,7 +216,7 @@
       // 真实调用失败：回退演示模式并提示（常见：CORS 跨域 / Key 无效 / 额度不足）
       done(simulatePrompt(idea));
       var note = document.getElementById('aiNote');
-      if(note) note.textContent = '⚠️ 调用失败（' + (err && err.message ? err.message : '网络错误') + '），已回退演示模式 · 请检查网络或刷新重试';
+      if(note) note.textContent = '⚠️ 调用失败（' + (err && err.message ? err.message : '网络错误') + '），已使用本地兜底生成 · 请检查网络或刷新重试';
     });
   }
   function aiSendIdea(raw){
@@ -251,11 +251,11 @@
   function aiUpdateNote(){
     if(!aiNote) return;
     if(AI_CONFIG.proxy){
-      aiNote.textContent = '已连接 Agnes AI（经代理）· 真实生成 · 只输出结构化提示词（Markdown 代码块）';
+      aiNote.textContent = '已连接 AI 服务（经代理）· 真实生成 · 只输出结构化提示词（Markdown 代码块）';
     } else if(aiHasKey()){
-      aiNote.textContent = '已连接 Agnes AI · 真实生成 · 只输出结构化提示词（Markdown 代码块）';
+      aiNote.textContent = '已连接 AI 服务 · 真实生成 · 只输出结构化提示词（Markdown 代码块）';
     } else {
-      aiNote.textContent = '只生成提示词 · 不闲聊 · 只输出结构化提示词（Markdown 代码块） · 当前为演示模式';
+      aiNote.textContent = '只生成提示词 · 不闲聊 · 只输出结构化提示词（Markdown 代码块）';
     }
   }
   aiUpdateNote();

@@ -164,6 +164,9 @@ main.wrap { padding-bottom:40px; }
 .src { font-size:13px; color:var(--text-3); margin-top:16px; word-break:break-all; }
 .src a { color:var(--brand); }
 footer.site { background:var(--surface); border-top:1px solid var(--border); color:var(--text-3); font-size:12px; padding:22px 0; margin-top:24px; }
+footer.site .foot-contact { margin-top:10px; }
+footer.site .foot-contact a { color:var(--brand); text-decoration:none; }
+footer.site .foot-contact a:hover { text-decoration:underline; }
 
 /* ===== 搭子陪写工具页 ===== */
 .tool-hero { padding:var(--s-6) 0 var(--s-4); }
