@@ -246,6 +246,9 @@ main.wrap { padding-bottom:40px; }
 .src { font-size:13px; color:var(--text-3); margin-top:16px; word-break:break-all; }
 .src a { color:var(--brand); }
 footer.site { background:var(--surface); border-top:1px solid var(--border); color:var(--text-3); font-size:12px; padding:22px 0; margin-top:24px; }
+footer.site .foot-contact { margin-top:10px; }
+footer.site .foot-contact a { color:var(--brand); text-decoration:none; }
+footer.site .foot-contact a:hover { text-decoration:underline; }
 
 /* ===== 搭子陪写工具页 ===== */
 .tool-hero { padding:var(--s-6) 0 var(--s-4); }
@@ -654,6 +657,7 @@ ${nav(active, base, active === '__index__')}
 <main class="wrap">${body}</main>
 <footer class="site"><div class="wrap">
   <p>内容来自公开开源仓库与本站 AI 原生生成，均保留原作者署名与协议。本页仅作聚合索引，版权归原作者所有。</p>
+  <p class="foot-contact">合作 / 反馈：<a href="mailto:caelusai@agent.qq.com">caelusai@agent.qq.com</a></p>
 </div></footer>
 <script src="${base}assets/app.js?v=3"></script>
 </body></html>`;
