@@ -18,6 +18,8 @@ if (!BATCH) {
 }
 
 function todayISO() { return new Date().toISOString().slice(0, 10); }
+// 汉字数：content 中 CJK 统一表意文字个数（不含英文/数字/标点/代码围栏）
+function hanCount(s) { return ((s || '').match(/[\u4e00-\u9fff]/g) || []).length; }
 
 function load(arr) {
   try { return JSON.parse(fs.readFileSync(arr, 'utf8')); } catch (e) { return null; }
@@ -38,6 +40,11 @@ for (const b of batch) {
     continue;
   }
   if (seenTitles.has(b.title.trim())) { console.warn('[generate] 跳过重复标题:', b.title); continue; }
+  // 字数硬性校验（汉字数）：精选≥500，普通≥300；不达标降级或跳过，避免污染精选/普通区
+  let isPick = !!b.editorPick;
+  const han = hanCount(b.content);
+  if (isPick && han < 400) { console.warn('[generate] 精选汉字数 ' + han + ' < 400，降级为普通:', b.title); isPick = false; }
+  if (han < 240) { console.warn('[generate] 跳过：汉字数 ' + han + ' < 240（普通最低要求）:', b.title); continue; }
   maxN += 1;
   added.push({
     id: `g-${maxN}`,
@@ -53,7 +60,7 @@ for (const b of batch) {
     license: 'CC-BY 4.0',
     stars: 0,
     score: (typeof b.score === 'number') ? b.score : 4,
-    editorPick: !!b.editorPick,
+    editorPick: isPick,
     difficulty: b.difficulty || '入门',
     useCase: b.useCase || '',
     curated: true,
