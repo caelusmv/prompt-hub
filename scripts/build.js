@@ -463,7 +463,7 @@ const JS = `
   };
   function aiGetKey(){ try { return localStorage.getItem(AI_CONFIG.keyStorage) || ''; } catch(e){ return ''; } }
   function aiSetKey(k){ try { if(k) localStorage.setItem(AI_CONFIG.keyStorage, k); else localStorage.removeItem(AI_CONFIG.keyStorage); } catch(e){} }
-  function aiHasKey(){ return !!aiGetKey(); }
+  function aiHasKey(){ return !!(aiGetKey() || AI_CONFIG.builtinKey); }
   function aiAdd(role, html){
     if(!aiMsgs) return;
     var wrap = document.createElement('div'); wrap.className = 'ai-msg ' + role;
@@ -552,7 +552,7 @@ const JS = `
       // 真实调用失败：回退演示模式并提示（常见：CORS 跨域 / Key 无效 / 额度不足）
       done(simulatePrompt(idea));
       var note = document.getElementById('aiNote');
-      if(note) note.textContent = '⚠️ 调用失败（' + (err && err.message ? err.message : '网络错误') + '），已回退演示模式 · 请检查网络或刷新重试';
+      if(note) note.textContent = '⚠️ 调用失败（' + (err && err.message ? err.message : '网络错误') + '），已使用本地兜底生成 · 请检查网络或刷新重试';
     });
   }
   function aiSendIdea(raw){
@@ -591,7 +591,7 @@ const JS = `
     } else if(aiHasKey()){
       aiNote.textContent = '已连接 Agnes AI · 真实生成 · 只输出结构化提示词（Markdown 代码块）';
     } else {
-      aiNote.textContent = '只生成提示词 · 不闲聊 · 只输出结构化提示词（Markdown 代码块） · 当前为演示模式';
+      aiNote.textContent = '只生成提示词 · 不闲聊 · 只输出结构化提示词（Markdown 代码块）';
     }
   }
   aiUpdateNote();
