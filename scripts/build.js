@@ -251,7 +251,7 @@ footer.site { background:var(--surface); border-top:1px solid var(--border); col
 footer.site .foot-contact { margin-top:10px; }
 footer.site .foot-contact a { color:var(--brand); text-decoration:none; }
 footer.site .foot-contact a:hover { text-decoration:underline; }
-
+footer.site .foot-copy { margin-top:10px; color:var(--text-3); opacity:.85; }
 /* ===== 搭子陪写工具页 ===== */
 .tool-hero { padding:var(--s-6) 0 var(--s-4); }
 .tool-hero h1 { margin:0 0 8px; font-size:var(--fs-hero); font-weight:700; }
@@ -660,6 +660,7 @@ ${nav(active, base, active === '__index__')}
 <footer class="site"><div class="wrap">
   <p>内容来自公开开源仓库与本站 AI 原生生成，均保留原作者署名与协议。本页仅作聚合索引，版权归原作者所有。</p>
   <p class="foot-contact">合作 / 反馈：<a href="mailto:promptdazi@agent.qq.com">promptdazi@agent.qq.com</a></p>
+  <p class="foot-copy">&copy; 2026 提示词搭子 PromptDazi · 最后更新 ${new Date().toISOString().slice(0,10)}</p>
 </div></footer>
 <script src="${base}assets/app.js?v=3"></script>
 </body></html>`;
@@ -918,7 +919,7 @@ function build() {
       </div>
       <div class="ai-msgs" id="aiMsgs"></div>
       <div class="ai-input-row">
-        <textarea id="aiInput" class="ai-input" rows="1" placeholder="输入你的想法，我直接帮你写出能用的提示词。例如：让 AI 写小红书种草文案 / 生成一段 Python 爬虫 / 出一张产品图"></textarea>
+        <textarea id="aiInput" class="ai-input" rows="1" placeholder="输入想法，例如：小红书种草文案 / Python 爬虫 / 产品图"></textarea>
         <div class="ai-input-bar">
           <div class="ai-input-left">
             <span class="ai-model">🤖 搭子定制</span>
