@@ -29,7 +29,7 @@ jobs:
       - name: Build site
         run: node scripts/build.js
         env:
-          SITE_URL: https://promptdazi.eu.org
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
       # 部署 public/ 到 gh-pages 分支（仓库 Settings → Pages → Source 选 gh-pages 分支）
       - name: Deploy to GitHub Pages

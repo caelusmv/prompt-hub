@@ -23,7 +23,7 @@ function esc(s) {
 const enc = c => encodeURIComponent(c);
 
 // 站点正式域名（上线后改成你的域名；或运行时 SITE_URL=https://your.domain node scripts/build.js）
-const SITE_URL = (process.env.SITE_URL || 'https://promptdazi.eu.org').replace(/\/$/, '');
+const SITE_URL = (process.env.SITE_URL || 'https://caelusmv.github.io/prompt-hub').replace(/\/$/, '');
 // 站长平台所有权验证标签（Google/Baidu/Bing 等）。留空数组=不注入；
 // 拿到验证 <meta> 后，把整行粘进这里，node scripts/build.js 即全站生效。
 const VERIFY_TAGS = [
@@ -1070,8 +1070,9 @@ ${CATEGORIES.filter(c => (byCat[c]||[]).length > 0).map(c => {
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`, 'utf8');
   // GitHub Pages 默认用 Jekyll 处理，遇到 {{ }} / {% %} 或下划线目录会出错；加 .nojekyll 让它原样托管静态文件
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '', 'utf8');
-  // GitHub Pages 自定义域名：public/CNAME 告诉 Pages 绑定哪个域名
-  fs.writeFileSync(path.join(OUT, 'CNAME'), 'promptdazi.eu.org\n', 'utf8');
+  // GitHub Pages 自定义域名：如需绑定自己的域名，取消下一行注释并把域名改对，
+  // 同时把上面 SITE_URL 默认值也改成该域名，重新 build + 部署即可。
+  // fs.writeFileSync(path.join(OUT, 'CNAME'), '你的域名\n', 'utf8');
   const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><rect width="1200" height="630" fill="url(#g)"/><text x="80" y="300" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="92" font-weight="800" fill="#ffffff">提示词搭子</text><text x="84" y="372" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="40" fill="#dbeafe">中文精选提示词 · 一键复制即用</text><text x="84" y="470" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="32" fill="#bfdbfe">PromptDazi · 陪你用好 AI</text></svg>`;
   fs.writeFileSync(path.join(OUT, 'assets', 'og.svg'), ogSvg, 'utf8');
 
