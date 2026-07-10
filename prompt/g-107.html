@@ -1,0 +1,95 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>代码注释与文档自动生成器 · Vibe Coding中文提示词 | 提示词搭子</title>
+<meta name="description" content="基于源码一键产出可读、可解析的中文注释与接口文档">
+<link rel="canonical" href="https://caelusmv.github.io/prompt-hub/prompt/g-107.html">
+<meta property="og:title" content="代码注释与文档自动生成器 · Vibe Coding中文提示词 | 提示词搭子">
+<meta property="og:description" content="基于源码一键产出可读、可解析的中文注释与接口文档">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://caelusmv.github.io/prompt-hub/prompt/g-107.html">
+<meta property="og:site_name" content="提示词搭子">
+<meta property="og:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="代码注释与文档自动生成器 · Vibe Coding中文提示词 | 提示词搭子">
+<meta name="twitter:description" content="基于源码一键产出可读、可解析的中文注释与接口文档">
+<meta name="twitter:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"代码注释与文档自动生成器","description":"基于源码一键产出可读、可解析的中文注释与接口文档","author":{"@type":"Organization","name":"提示词搭子（AI 生成）"},"publisher":{"@type":"Organization","name":"提示词搭子","logo":{"@type":"ImageObject","url":"https://caelusmv.github.io/prompt-hub/assets/og.svg"}},"datePublished":"2026-07-10","inLanguage":"zh-CN","articleSection":"Vibe Coding","keywords":"注释,文档,技术写作,code comment","about":{"@type":"Thing","name":"Vibe Coding提示词"},"mainEntity":{"@type":"CreativeWork","text":"你是一位兼具十年开发经验与技术写作能力的资深工程师。请基于我提供的源代码（语言、框架、核心函数或模块），自动生成一套既便于他人阅读、也利于自动化工具解析的注释与技术文档，要求产出可直接复制进代码仓库或团队知识库。\n\n请严格按以下结构输出：\n一、文件级说明：用两三句话概括该文件或模块的职责、对外暴露的能力与典型调用场景，让接手的人十秒内看懂它在整个系统里的位置。\n二、函数与类注释：为每个公开函数或类撰写注释，包含功能一句话、参数含义（名称、类型、是否必填、可能的取值范围）、返回值形态，以及可能抛出的异常类型与触发条件。\n三、关键逻辑行内注释：针对容易误解、涉及边界或隐含业务规则的代码段，补充分行内注释，解释为什么这样做而非做了什么，避免把代码重新念一遍。\n四、对外接口文档：若该函数会被其他服务调用，给出请求与响应的字段表、鉴权方式与错误码，参照 RESTful 风格。\n五、使用示例：提供一段最小可运行的使用代码，并标注预期输出，帮助新人快速验证。\n六、待确认项：列出注释中基于假设推断、需要与原作者核对的地方，统一标注待确认。\n\n约束条件：注释语言以中文为主，专有名词与方法名保留英文原样；所有说明必须与代码真实行为一致，不得臆造不存在的参数或能力；行内注释只解释必要处，避免过度注释造成噪音；风格遵循现有代码库的约定，保持统一。"},"url":"https://caelusmv.github.io/prompt-hub/prompt/g-107.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://caelusmv.github.io/prompt-hub/"},{"@type":"ListItem","position":2,"name":"Vibe Coding","item":"https://caelusmv.github.io/prompt-hub/category/coding.html"},{"@type":"ListItem","position":3,"name":"代码注释与文档自动生成器","item":"https://caelusmv.github.io/prompt-hub/prompt/g-107.html"}]}</script>
+
+<link rel="stylesheet" href="../assets/style.css?v=4">
+</head><body>
+<header class="site"><div class="wrap site-head">
+  <div class="brand">
+    <a class="logo" href="../index.html">提示词搭子<span> PromptDazi</span></a>
+    <p class="tag">中文精选提示词 · 一键复制 · 陪你用好 AI</p>
+  </div>
+  <a class="tool-link " href="../tool.html">✍ 搭子陪写</a>
+</div></header>
+<nav class="cats"><div class="wrap"><a class="navlink " href="../category/coding.html">Vibe Coding<span class="count">50</span></a><a class="navlink " href="../category/marketing.html">电商<span class="count">30</span></a><a class="navlink " href="../category/image.html">文生图<span class="count">46</span></a><a class="navlink " href="../category/video.html">AI漫剧<span class="count">38</span></a><button type="button" class="navlink pick-btn" data-pick-toggle>★ 搭子精选<span class="count">15</span></button></div></nav>
+<main class="wrap"><article class="detail">
+      <div class="breadcrumb">
+        <a class="back-btn" href="../index.html">← 返回首页</a>
+        <span class="crumb"><a href="../index.html">首页</a> › <a href="../category/coding.html">Vibe Coding</a> › 代码注释与文档自动生成器</span>
+      </div>
+      <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">入门</span><span class="badge pick">★ 搭子精选</span></div>
+      <h1>代码注释与文档自动生成器</h1>
+      <p class="desc">基于源码一键产出可读、可解析的中文注释与接口文档</p>
+      <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> <span>搭子评分</span> · 难度 入门 · 作者 提示词搭子（AI 生成） · 协议 CC-BY 4.0</div>
+      <div class="copy-bar">
+        <span class="msg"><span class="ok">✓</span> 人工精选 · 一键复制即用</span>
+        <button class="copy-btn" type="button">复制提示词</button>
+      </div>
+      <div class="usecase"><b>适用场景：</b>为存量代码补齐注释与接口文档，降低接手成本</div>
+      <div class="code-card">
+        <div class="code-head"><span class="lang">提示词内容</span><button class="copy-btn" type="button">复制</button></div>
+        <pre id="prompt-content">你是一位兼具十年开发经验与技术写作能力的资深工程师。请基于我提供的源代码（语言、框架、核心函数或模块），自动生成一套既便于他人阅读、也利于自动化工具解析的注释与技术文档，要求产出可直接复制进代码仓库或团队知识库。
+
+请严格按以下结构输出：
+一、文件级说明：用两三句话概括该文件或模块的职责、对外暴露的能力与典型调用场景，让接手的人十秒内看懂它在整个系统里的位置。
+二、函数与类注释：为每个公开函数或类撰写注释，包含功能一句话、参数含义（名称、类型、是否必填、可能的取值范围）、返回值形态，以及可能抛出的异常类型与触发条件。
+三、关键逻辑行内注释：针对容易误解、涉及边界或隐含业务规则的代码段，补充分行内注释，解释为什么这样做而非做了什么，避免把代码重新念一遍。
+四、对外接口文档：若该函数会被其他服务调用，给出请求与响应的字段表、鉴权方式与错误码，参照 RESTful 风格。
+五、使用示例：提供一段最小可运行的使用代码，并标注预期输出，帮助新人快速验证。
+六、待确认项：列出注释中基于假设推断、需要与原作者核对的地方，统一标注待确认。
+
+约束条件：注释语言以中文为主，专有名词与方法名保留英文原样；所有说明必须与代码真实行为一致，不得臆造不存在的参数或能力；行内注释只解释必要处，避免过度注释造成噪音；风格遵循现有代码库的约定，保持统一。</pre>
+      </div>
+      <p class="src">来源：本站 AI 原生生成内容（原创，遵循 CC-BY 4.0，可自由使用并注明出处）。</p>
+      <section class="related"><h2>相关Vibe Coding提示词</h2><div class="grid"><a class="card" href="../prompt/g-1.html" data-cat="编程" data-pick="1" data-text="全栈项目脚手架生成 根据一句需求产出技术选型、目录结构与核心代码 从零搭建项目骨架 脚手架 全栈 架构">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>全栈项目脚手架生成</h3>
+    <p>根据一句需求产出技术选型、目录结构与核心代码</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-3.html" data-cat="编程" data-pick="1" data-text="sql 慢查询优化顾问 分析慢 sql 并给出索引与重写方案 慢查询排查与索引优化 sql 索引 性能">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>SQL 慢查询优化顾问</h3>
+    <p>分析慢 SQL 并给出索引与重写方案</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-49.html" data-cat="编程" data-pick="1" data-text="线上故障根因分析（rca） 给告警与日志产出复盘报告 线上故障复盘 rca sre 故障 复盘">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">专家</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>线上故障根因分析（RCA）</h3>
+    <p>给告警与日志产出复盘报告</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-62.html" data-cat="编程" data-pick="1" data-text="git 提交信息规范 按 conventional commits 生成规范提交信息 按 conventional commits 生成规范提交信息 git 规范 协作">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>Git 提交信息规范</h3>
+    <p>按 Conventional Commits 生成规范提交信息</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-51.html" data-cat="编程" data-pick="1" data-text="技术选型决策顾问 给需求与约束，输出候选技术栈对比与明确推荐 给需求与约束，输出候选技术栈对比与明确推荐 技术选型 架构 决策">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>技术选型决策顾问</h3>
+    <p>给需求与约束，输出候选技术栈对比与明确推荐</p>
+    <div class="meta"><span class="stars" title="搭子评分 4/5">★★★★<span class="empty">☆</span></span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-53.html" data-cat="编程" data-pick="1" data-text="数据库表结构设计 按业务描述设计关系表、索引与建表 sql 按业务描述设计关系表、索引与建表 sql 数据库 schema mysql">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>数据库表结构设计</h3>
+    <p>按业务描述设计关系表、索引与建表 SQL</p>
+    <div class="meta"><span class="stars" title="搭子评分 4/5">★★★★<span class="empty">☆</span></span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a></div></section>
+    </article></main>
+<footer class="site"><div class="wrap">
+  <p>内容来自公开开源仓库与本站 AI 原生生成，均保留原作者署名与协议。本页仅作聚合索引，版权归原作者所有。</p>
+  <p class="foot-contact">合作 / 反馈：<a href="mailto:promptdazi@agent.qq.com">promptdazi@agent.qq.com</a></p>
+</div></footer>
+<script src="../assets/app.js?v=3"></script>
+</body></html>

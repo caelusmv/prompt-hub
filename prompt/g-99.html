@@ -2,19 +2,19 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>技术债务评估与重构优先级 · Vibe Coding中文提示词 | 提示词搭子</title>
 <meta name="description" content="针对指定模块评估技术债务，给出量化评分与分批重构路线。">
-<link rel="canonical" href="https://promptdazi.eu.org/prompt/g-99.html">
+<link rel="canonical" href="https://caelusmv.github.io/prompt-hub/prompt/g-99.html">
 <meta property="og:title" content="技术债务评估与重构优先级 · Vibe Coding中文提示词 | 提示词搭子">
 <meta property="og:description" content="针对指定模块评估技术债务，给出量化评分与分批重构路线。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://promptdazi.eu.org/prompt/g-99.html">
+<meta property="og:url" content="https://caelusmv.github.io/prompt-hub/prompt/g-99.html">
 <meta property="og:site_name" content="提示词搭子">
-<meta property="og:image" content="https://promptdazi.eu.org/assets/og.svg">
+<meta property="og:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="技术债务评估与重构优先级 · Vibe Coding中文提示词 | 提示词搭子">
 <meta name="twitter:description" content="针对指定模块评估技术债务，给出量化评分与分批重构路线。">
-<meta name="twitter:image" content="https://promptdazi.eu.org/assets/og.svg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"技术债务评估与重构优先级","description":"针对指定模块评估技术债务，给出量化评分与分批重构路线。","author":{"@type":"Organization","name":"提示词搭子（AI 生成）"},"publisher":{"@type":"Organization","name":"提示词搭子","logo":{"@type":"ImageObject","url":"https://promptdazi.eu.org/assets/og.svg"}},"datePublished":"2026-07-09","inLanguage":"zh-CN","articleSection":"Vibe Coding","keywords":"技术债务,重构,代码质量,架构","about":{"@type":"Thing","name":"Vibe Coding提示词"},"mainEntity":{"@type":"CreativeWork","text":"你是一位资深软件架构师，擅长识别技术债务并制定可执行的重构路线。请基于我提供的模块背景（业务重要性、代码规模、变更频率、已知问题、团队熟悉度），输出一份技术债务评估报告与重构优先级建议。\n\n请按以下框架输出：\n一、债务清单：逐条列出该模块存在的技术债务，类型涵盖重复代码、过长函数、耦合过紧、缺乏测试、过时依赖、糟糕命名等，并标注每条的出现位置或典型表现。\n二、影响评估：对每条债务从「业务风险、维护成本、缺陷概率」三个维度打分（各一分至五分），综合得出紧急度。\n三、重构路线：将债务按优先级分批，给出每批的目标、预期收益、大致工作量与建议的重构手法（如提取函数、引入接口、拆分服务、补齐测试）。\n四、落地节奏：结合变更频率建议安全的重构窗口，强调「测试先行、小步提交、持续集成」的原则，避免大规模并行改动。\n五、度量指标：提出两到三个可用于验证重构成效的指标（如圈复杂度、测试覆盖率、构建时长）。\n\n约束：评估需结合我给出的实际背景，不套用通用模板；结论要可执行，避免只谈概念。"},"url":"https://promptdazi.eu.org/prompt/g-99.html"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://promptdazi.eu.org/"},{"@type":"ListItem","position":2,"name":"Vibe Coding","item":"https://promptdazi.eu.org/category/coding.html"},{"@type":"ListItem","position":3,"name":"技术债务评估与重构优先级","item":"https://promptdazi.eu.org/prompt/g-99.html"}]}</script>
+<meta name="twitter:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"技术债务评估与重构优先级","description":"针对指定模块评估技术债务，给出量化评分与分批重构路线。","author":{"@type":"Organization","name":"提示词搭子（AI 生成）"},"publisher":{"@type":"Organization","name":"提示词搭子","logo":{"@type":"ImageObject","url":"https://caelusmv.github.io/prompt-hub/assets/og.svg"}},"datePublished":"2026-07-09","inLanguage":"zh-CN","articleSection":"Vibe Coding","keywords":"技术债务,重构,代码质量,架构","about":{"@type":"Thing","name":"Vibe Coding提示词"},"mainEntity":{"@type":"CreativeWork","text":"你是一位资深软件架构师，擅长识别技术债务并制定可执行的重构路线。请基于我提供的模块背景（业务重要性、代码规模、变更频率、已知问题、团队熟悉度），输出一份技术债务评估报告与重构优先级建议。\n\n请按以下框架输出：\n一、债务清单：逐条列出该模块存在的技术债务，类型涵盖重复代码、过长函数、耦合过紧、缺乏测试、过时依赖、糟糕命名等，并标注每条的出现位置或典型表现。\n二、影响评估：对每条债务从「业务风险、维护成本、缺陷概率」三个维度打分（各一分至五分），综合得出紧急度。\n三、重构路线：将债务按优先级分批，给出每批的目标、预期收益、大致工作量与建议的重构手法（如提取函数、引入接口、拆分服务、补齐测试）。\n四、落地节奏：结合变更频率建议安全的重构窗口，强调「测试先行、小步提交、持续集成」的原则，避免大规模并行改动。\n五、度量指标：提出两到三个可用于验证重构成效的指标（如圈复杂度、测试覆盖率、构建时长）。\n\n约束：评估需结合我给出的实际背景，不套用通用模板；结论要可执行，避免只谈概念。"},"url":"https://caelusmv.github.io/prompt-hub/prompt/g-99.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://caelusmv.github.io/prompt-hub/"},{"@type":"ListItem","position":2,"name":"Vibe Coding","item":"https://caelusmv.github.io/prompt-hub/category/coding.html"},{"@type":"ListItem","position":3,"name":"技术债务评估与重构优先级","item":"https://caelusmv.github.io/prompt-hub/prompt/g-99.html"}]}</script>
 
 <link rel="stylesheet" href="../assets/style.css?v=4">
 </head><body>
@@ -25,7 +25,7 @@
   </div>
   <a class="tool-link " href="../tool.html">✍ 搭子陪写</a>
 </div></header>
-<nav class="cats"><div class="wrap"><a class="navlink " href="../category/coding.html">Vibe Coding<span class="count">48</span></a><a class="navlink " href="../category/marketing.html">电商<span class="count">28</span></a><a class="navlink " href="../category/image.html">文生图<span class="count">43</span></a><a class="navlink " href="../category/video.html">AI漫剧<span class="count">35</span></a><button type="button" class="navlink pick-btn" data-pick-toggle>★ 搭子精选<span class="count">14</span></button></div></nav>
+<nav class="cats"><div class="wrap"><a class="navlink " href="../category/coding.html">Vibe Coding<span class="count">50</span></a><a class="navlink " href="../category/marketing.html">电商<span class="count">30</span></a><a class="navlink " href="../category/image.html">文生图<span class="count">46</span></a><a class="navlink " href="../category/video.html">AI漫剧<span class="count">38</span></a><button type="button" class="navlink pick-btn" data-pick-toggle>★ 搭子精选<span class="count">15</span></button></div></nav>
 <main class="wrap"><article class="detail">
       <div class="breadcrumb">
         <a class="back-btn" href="../index.html">← 返回首页</a>
@@ -74,15 +74,15 @@
     <h3>Git 提交信息规范</h3>
     <p>按 Conventional Commits 生成规范提交信息</p>
     <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-107.html" data-cat="编程" data-pick="1" data-text="代码注释与文档自动生成器 基于源码一键产出可读、可解析的中文注释与接口文档 为存量代码补齐注释与接口文档，降低接手成本 注释 文档 技术写作 code comment">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">入门</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>代码注释与文档自动生成器</h3>
+    <p>基于源码一键产出可读、可解析的中文注释与接口文档</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
   </a><a class="card" href="../prompt/g-51.html" data-cat="编程" data-pick="1" data-text="技术选型决策顾问 给需求与约束，输出候选技术栈对比与明确推荐 给需求与约束，输出候选技术栈对比与明确推荐 技术选型 架构 决策">
     <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
     <h3>技术选型决策顾问</h3>
     <p>给需求与约束，输出候选技术栈对比与明确推荐</p>
-    <div class="meta"><span class="stars" title="搭子评分 4/5">★★★★<span class="empty">☆</span></span> 提示词搭子（AI 生成） · ⭐0</div>
-  </a><a class="card" href="../prompt/g-53.html" data-cat="编程" data-pick="1" data-text="数据库表结构设计 按业务描述设计关系表、索引与建表 sql 按业务描述设计关系表、索引与建表 sql 数据库 schema mysql">
-    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
-    <h3>数据库表结构设计</h3>
-    <p>按业务描述设计关系表、索引与建表 SQL</p>
     <div class="meta"><span class="stars" title="搭子评分 4/5">★★★★<span class="empty">☆</span></span> 提示词搭子（AI 生成） · ⭐0</div>
   </a></div></section>
     </article></main>
