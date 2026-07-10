@@ -12,7 +12,7 @@ const CATEGORIES = ['编程', '营销', '图像', '视频', '综合'];
 const CAT_SLUG = { '编程': 'coding', '营销': 'marketing', '图像': 'image', '视频': 'video', '综合': 'general' };
 const CAT_ICON = { '编程': '💻', '营销': '📣', '图像': '🎨', '视频': '🎬', '综合': '🧩' };
 // 首页 / 分类 / 详情页等处的用户-facing 文案，用领域黑话替换中文分类名，URL/字段仍用原分类
-const CAT_DISPLAY = { '编程': 'Vibe Coding', '营销': '电商', '图像': '文生图', '视频': 'AI漫剧', '综合': '综合' };
+const CAT_DISPLAY = { '编程': 'Vibe Coding', '营销': '电商', '图像': '文生图', '视频': 'AI视频', '综合': '综合' };
 function catSlug(c) { return CAT_SLUG[c] || enc(c); }
 
 function esc(s) {
