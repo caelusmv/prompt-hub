@@ -1,0 +1,99 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python 数据清洗脚本生成 · Vibe Coding中文提示词 | 提示词搭子</title>
+<meta name="description" content="描述脏数据问题，生成可直接运行的 pandas 清洗脚本">
+<link rel="canonical" href="https://caelusmv.github.io/prompt-hub/prompt/g-128.html">
+<meta property="og:title" content="Python 数据清洗脚本生成 · Vibe Coding中文提示词 | 提示词搭子">
+<meta property="og:description" content="描述脏数据问题，生成可直接运行的 pandas 清洗脚本">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://caelusmv.github.io/prompt-hub/prompt/g-128.html">
+<meta property="og:site_name" content="提示词搭子">
+<meta property="og:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python 数据清洗脚本生成 · Vibe Coding中文提示词 | 提示词搭子">
+<meta name="twitter:description" content="描述脏数据问题，生成可直接运行的 pandas 清洗脚本">
+<meta name="twitter:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Python 数据清洗脚本生成","description":"描述脏数据问题，生成可直接运行的 pandas 清洗脚本","author":{"@type":"Organization","name":"提示词搭子（AI 生成）"},"publisher":{"@type":"Organization","name":"提示词搭子","logo":{"@type":"ImageObject","url":"https://caelusmv.github.io/prompt-hub/assets/og.svg"}},"datePublished":"2026-07-13","inLanguage":"zh-CN","articleSection":"Vibe Coding","keywords":"pandas,数据清洗,数据处理","about":{"@type":"Thing","name":"Vibe Coding提示词"},"mainEntity":{"@type":"CreativeWork","text":"你是一位数据处理工程师。请针对下面的数据问题，生成一段可直接运行的 Python（pandas）清洗脚本：\n\n数据来源与格式：「{CSV / Excel / 数据库表，附字段说明}」\n需要处理的脏数据：「{缺失值 / 重复行 / 格式不一 / 异常值 / 编码乱码 / 单位不统一等}」\n期望结果：「{清洗后应该是什么样子}」\n\n要求：\n1. 用 pandas 读取数据并做必要的类型转换，路径用变量占位，方便替换；\n2. 针对每一种脏数据逐步处理：去重、填充或删除缺失、统一格式、剔除异常、纠正编码；\n3. 每一步都加中文注释，说明在做什么、为什么这么做；\n4. 脚本末尾输出清洗前后的行数、列数对比，以及被删除的异常行数；\n5. 给出 2 条后续校验建议（如校验唯一键、抽样核对）。\n\n代码要稳健，对空值和异常有兜底处理，不要硬编码假设；如果某类脏数据无法自动判断，请打印出来交由人工确认，而不是默默丢弃。"},"url":"https://caelusmv.github.io/prompt-hub/prompt/g-128.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://caelusmv.github.io/prompt-hub/"},{"@type":"ListItem","position":2,"name":"Vibe Coding","item":"https://caelusmv.github.io/prompt-hub/category/coding.html"},{"@type":"ListItem","position":3,"name":"Python 数据清洗脚本生成","item":"https://caelusmv.github.io/prompt-hub/prompt/g-128.html"}]}</script>
+
+<link rel="stylesheet" href="../assets/style.css?v=4">
+</head><body>
+<header class="site"><div class="wrap site-head">
+  <div class="brand">
+    <a class="logo" href="../index.html">提示词搭子<span> PromptDazi</span></a>
+    <p class="tag">中文精选提示词 · 一键复制 · 陪你用好 AI</p>
+  </div>
+  <a class="tool-link " href="../tool.html">✍ 搭子陪写</a>
+</div></header>
+<nav class="cats"><div class="wrap"><a class="navlink " href="../category/coding.html">Vibe Coding<span class="count">61</span></a><a class="navlink " href="../category/marketing.html">电商<span class="count">39</span></a><a class="navlink " href="../category/image.html">文生图<span class="count">57</span></a><a class="navlink " href="../category/video.html">AI视频<span class="count">47</span></a><button type="button" class="navlink pick-btn" data-pick-toggle>★ 搭子精选<span class="count">18</span></button></div></nav>
+<main class="wrap"><article class="detail">
+      <div class="breadcrumb">
+        <a class="back-btn" href="../index.html">← 返回首页</a>
+        <span class="crumb"><a href="../index.html">首页</a> › <a href="../category/coding.html">Vibe Coding</a> › Python 数据清洗脚本生成</span>
+      </div>
+      <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">入门</span></div>
+      <h1>Python 数据清洗脚本生成</h1>
+      <p class="desc">描述脏数据问题，生成可直接运行的 pandas 清洗脚本</p>
+      <div class="meta"><span class="stars" title="搭子评分 4/5">★★★★<span class="empty">☆</span></span> <span>搭子评分</span> · 难度 入门 · 作者 提示词搭子（AI 生成） · 协议 CC-BY 4.0</div>
+      <div class="copy-bar">
+        <span class="msg"><span class="ok">✓</span> 人工精选 · 一键复制即用</span>
+        <button class="copy-btn" type="button">复制提示词</button>
+      </div>
+      
+      <div class="code-card">
+        <div class="code-head"><span class="lang">提示词内容</span><button class="copy-btn" type="button">复制</button></div>
+        <pre id="prompt-content">你是一位数据处理工程师。请针对下面的数据问题，生成一段可直接运行的 Python（pandas）清洗脚本：
+
+数据来源与格式：「{CSV / Excel / 数据库表，附字段说明}」
+需要处理的脏数据：「{缺失值 / 重复行 / 格式不一 / 异常值 / 编码乱码 / 单位不统一等}」
+期望结果：「{清洗后应该是什么样子}」
+
+要求：
+1. 用 pandas 读取数据并做必要的类型转换，路径用变量占位，方便替换；
+2. 针对每一种脏数据逐步处理：去重、填充或删除缺失、统一格式、剔除异常、纠正编码；
+3. 每一步都加中文注释，说明在做什么、为什么这么做；
+4. 脚本末尾输出清洗前后的行数、列数对比，以及被删除的异常行数；
+5. 给出 2 条后续校验建议（如校验唯一键、抽样核对）。
+
+代码要稳健，对空值和异常有兜底处理，不要硬编码假设；如果某类脏数据无法自动判断，请打印出来交由人工确认，而不是默默丢弃。</pre>
+      </div>
+      <p class="src">来源：本站 AI 原生生成内容（原创，遵循 CC-BY 4.0，可自由使用并注明出处）。</p>
+      <section class="related"><h2>相关Vibe Coding提示词</h2><div class="grid"><a class="card" href="../prompt/g-1.html" data-cat="编程" data-pick="1" data-text="全栈项目脚手架生成 根据一句需求产出技术选型、目录结构与核心代码 从零搭建项目骨架 脚手架 全栈 架构">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>全栈项目脚手架生成</h3>
+    <p>根据一句需求产出技术选型、目录结构与核心代码</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-3.html" data-cat="编程" data-pick="1" data-text="sql 慢查询优化顾问 分析慢 sql 并给出索引与重写方案 慢查询排查与索引优化 sql 索引 性能">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>SQL 慢查询优化顾问</h3>
+    <p>分析慢 SQL 并给出索引与重写方案</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-49.html" data-cat="编程" data-pick="1" data-text="线上故障根因分析（rca） 给告警与日志产出复盘报告 线上故障复盘 rca sre 故障 复盘">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">专家</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>线上故障根因分析（RCA）</h3>
+    <p>给告警与日志产出复盘报告</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-62.html" data-cat="编程" data-pick="1" data-text="git 提交信息规范 按 conventional commits 生成规范提交信息 按 conventional commits 生成规范提交信息 git 规范 协作">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>Git 提交信息规范</h3>
+    <p>按 Conventional Commits 生成规范提交信息</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-107.html" data-cat="编程" data-pick="1" data-text="代码注释与文档自动生成器 基于源码一键产出可读、可解析的中文注释与接口文档 为存量代码补齐注释与接口文档，降低接手成本 注释 文档 技术写作 code comment">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">入门</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>代码注释与文档自动生成器</h3>
+    <p>基于源码一键产出可读、可解析的中文注释与接口文档</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-117.html" data-cat="编程" data-pick="1" data-text="强制 json 结构化输出提示词 把自然语言需求转成可稳定触发大模型纯 json 输出的提示词与调用规范 让大模型稳定返回合规 json 的提示词工程模板 json 结构化输出 接口提示词 function calling">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>强制 JSON 结构化输出提示词</h3>
+    <p>把自然语言需求转成可稳定触发大模型纯 JSON 输出的提示词与调用规范</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a></div></section>
+    </article></main>
+<footer class="site"><div class="wrap">
+  <p>内容来自公开开源仓库与本站 AI 原生生成，均保留原作者署名与协议。本页仅作聚合索引，版权归原作者所有。</p>
+  <p class="foot-contact">合作 / 反馈：<a href="mailto:promptdazi@agent.qq.com">promptdazi@agent.qq.com</a></p>
+  <p class="foot-copy">&copy; 2026 提示词搭子 PromptDazi · 最后更新 2026-07-15</p>
+</div></footer>
+<script src="../assets/app.js?v=3"></script>
+</body></html>

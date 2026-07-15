@@ -1,0 +1,103 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>浏览器扩展开发脚手架 · Vibe Coding中文提示词 | 提示词搭子</title>
+<meta name="description" content="从需求到可运行 Chrome 扩展（Manifest V3）的代码与清单">
+<link rel="canonical" href="https://caelusmv.github.io/prompt-hub/prompt/g-147.html">
+<meta property="og:title" content="浏览器扩展开发脚手架 · Vibe Coding中文提示词 | 提示词搭子">
+<meta property="og:description" content="从需求到可运行 Chrome 扩展（Manifest V3）的代码与清单">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://caelusmv.github.io/prompt-hub/prompt/g-147.html">
+<meta property="og:site_name" content="提示词搭子">
+<meta property="og:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="浏览器扩展开发脚手架 · Vibe Coding中文提示词 | 提示词搭子">
+<meta name="twitter:description" content="从需求到可运行 Chrome 扩展（Manifest V3）的代码与清单">
+<meta name="twitter:image" content="https://caelusmv.github.io/prompt-hub/assets/og.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"浏览器扩展开发脚手架","description":"从需求到可运行 Chrome 扩展（Manifest V3）的代码与清单","author":{"@type":"Organization","name":"提示词搭子（AI 生成）"},"publisher":{"@type":"Organization","name":"提示词搭子","logo":{"@type":"ImageObject","url":"https://caelusmv.github.io/prompt-hub/assets/og.svg"}},"datePublished":"2026-07-15","inLanguage":"zh-CN","articleSection":"Vibe Coding","keywords":"Chrome扩展,浏览器插件,Manifest V3,前端","about":{"@type":"Thing","name":"Vibe Coding提示词"},"mainEntity":{"@type":"CreativeWork","text":"你是一位资深前端工程师，精通 Chrome 扩展（Manifest V3）开发。请根据用户需求「{扩展功能，例如：一键提取当前网页所有图片并打包下载}」生成一份可直接落地的扩展开发脚手架。请严格按以下结构输出：\n\n一、功能拆解：用三句话说明这个扩展解决什么用户痛点、核心交互是什么、用户通过什么入口触发它（浏览器图标、右键菜单或自动运行）。\n\n二、完整目录结构：给出项目目录树，至少包含 manifest.json、background service worker、content script、popup 页面与样式、可选的 options 页面；用一句话说明每个文件的职责。\n\n三、核心代码（必须采用 Manifest V3 写法，关键处加中文注释，代码可直接运行，不要写占位符）：\n1. manifest.json：包含 name、version、manifest_version 等于 3、permissions、action、background.service_worker、content_scripts 等字段，逐行注释每个权限的作用与触发安装警告的原因；\n2. background.js：后台逻辑骨架，例如监听浏览器图标点击、调用 chrome.downloads 或 chrome.tabs 等接口；\n3. content.js：注入页面的脚本，例如抓取当前文档里所有 img 标签的 src 并回传给后台；\n4. popup.html 与 popup.js：弹窗界面，展示提取结果并提供一键下载按钮；\n5. 如有需要，给出 options.html 的基础结构。\n\n四、权限与隐私说明：列出本次用到的 Chrome 接口权限，解释为什么要这些权限，并提示哪些权限会让用户在安装时看到警告；明确说明本扩展不收集任何用户隐私数据。\n\n五、本地调试步骤：列出在 chrome://extensions 打开开发者模式、加载已解压的扩展目录、查看后台日志与报错的具体操作。\n\n最后用一段中文总结这个扩展从用户点击到完成任务的完整工作流程，方便新手理解。"},"url":"https://caelusmv.github.io/prompt-hub/prompt/g-147.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://caelusmv.github.io/prompt-hub/"},{"@type":"ListItem","position":2,"name":"Vibe Coding","item":"https://caelusmv.github.io/prompt-hub/category/coding.html"},{"@type":"ListItem","position":3,"name":"浏览器扩展开发脚手架","item":"https://caelusmv.github.io/prompt-hub/prompt/g-147.html"}]}</script>
+
+<link rel="stylesheet" href="../assets/style.css?v=4">
+</head><body>
+<header class="site"><div class="wrap site-head">
+  <div class="brand">
+    <a class="logo" href="../index.html">提示词搭子<span> PromptDazi</span></a>
+    <p class="tag">中文精选提示词 · 一键复制 · 陪你用好 AI</p>
+  </div>
+  <a class="tool-link " href="../tool.html">✍ 搭子陪写</a>
+</div></header>
+<nav class="cats"><div class="wrap"><a class="navlink " href="../category/coding.html">Vibe Coding<span class="count">61</span></a><a class="navlink " href="../category/marketing.html">电商<span class="count">39</span></a><a class="navlink " href="../category/image.html">文生图<span class="count">57</span></a><a class="navlink " href="../category/video.html">AI视频<span class="count">47</span></a><button type="button" class="navlink pick-btn" data-pick-toggle>★ 搭子精选<span class="count">18</span></button></div></nav>
+<main class="wrap"><article class="detail">
+      <div class="breadcrumb">
+        <a class="back-btn" href="../index.html">← 返回首页</a>
+        <span class="crumb"><a href="../index.html">首页</a> › <a href="../category/coding.html">Vibe Coding</a> › 浏览器扩展开发脚手架</span>
+      </div>
+      <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+      <h1>浏览器扩展开发脚手架</h1>
+      <p class="desc">从需求到可运行 Chrome 扩展（Manifest V3）的代码与清单</p>
+      <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> <span>搭子评分</span> · 难度 进阶 · 作者 提示词搭子（AI 生成） · 协议 CC-BY 4.0</div>
+      <div class="copy-bar">
+        <span class="msg"><span class="ok">✓</span> 人工精选 · 一键复制即用</span>
+        <button class="copy-btn" type="button">复制提示词</button>
+      </div>
+      <div class="usecase"><b>适用场景：</b>从零写一个可安装的浏览器扩展</div>
+      <div class="code-card">
+        <div class="code-head"><span class="lang">提示词内容</span><button class="copy-btn" type="button">复制</button></div>
+        <pre id="prompt-content">你是一位资深前端工程师，精通 Chrome 扩展（Manifest V3）开发。请根据用户需求「{扩展功能，例如：一键提取当前网页所有图片并打包下载}」生成一份可直接落地的扩展开发脚手架。请严格按以下结构输出：
+
+一、功能拆解：用三句话说明这个扩展解决什么用户痛点、核心交互是什么、用户通过什么入口触发它（浏览器图标、右键菜单或自动运行）。
+
+二、完整目录结构：给出项目目录树，至少包含 manifest.json、background service worker、content script、popup 页面与样式、可选的 options 页面；用一句话说明每个文件的职责。
+
+三、核心代码（必须采用 Manifest V3 写法，关键处加中文注释，代码可直接运行，不要写占位符）：
+1. manifest.json：包含 name、version、manifest_version 等于 3、permissions、action、background.service_worker、content_scripts 等字段，逐行注释每个权限的作用与触发安装警告的原因；
+2. background.js：后台逻辑骨架，例如监听浏览器图标点击、调用 chrome.downloads 或 chrome.tabs 等接口；
+3. content.js：注入页面的脚本，例如抓取当前文档里所有 img 标签的 src 并回传给后台；
+4. popup.html 与 popup.js：弹窗界面，展示提取结果并提供一键下载按钮；
+5. 如有需要，给出 options.html 的基础结构。
+
+四、权限与隐私说明：列出本次用到的 Chrome 接口权限，解释为什么要这些权限，并提示哪些权限会让用户在安装时看到警告；明确说明本扩展不收集任何用户隐私数据。
+
+五、本地调试步骤：列出在 chrome://extensions 打开开发者模式、加载已解压的扩展目录、查看后台日志与报错的具体操作。
+
+最后用一段中文总结这个扩展从用户点击到完成任务的完整工作流程，方便新手理解。</pre>
+      </div>
+      <p class="src">来源：本站 AI 原生生成内容（原创，遵循 CC-BY 4.0，可自由使用并注明出处）。</p>
+      <section class="related"><h2>相关Vibe Coding提示词</h2><div class="grid"><a class="card" href="../prompt/g-1.html" data-cat="编程" data-pick="1" data-text="全栈项目脚手架生成 根据一句需求产出技术选型、目录结构与核心代码 从零搭建项目骨架 脚手架 全栈 架构">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>全栈项目脚手架生成</h3>
+    <p>根据一句需求产出技术选型、目录结构与核心代码</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-3.html" data-cat="编程" data-pick="1" data-text="sql 慢查询优化顾问 分析慢 sql 并给出索引与重写方案 慢查询排查与索引优化 sql 索引 性能">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>SQL 慢查询优化顾问</h3>
+    <p>分析慢 SQL 并给出索引与重写方案</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-49.html" data-cat="编程" data-pick="1" data-text="线上故障根因分析（rca） 给告警与日志产出复盘报告 线上故障复盘 rca sre 故障 复盘">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">专家</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>线上故障根因分析（RCA）</h3>
+    <p>给告警与日志产出复盘报告</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-62.html" data-cat="编程" data-pick="1" data-text="git 提交信息规范 按 conventional commits 生成规范提交信息 按 conventional commits 生成规范提交信息 git 规范 协作">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>Git 提交信息规范</h3>
+    <p>按 Conventional Commits 生成规范提交信息</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-107.html" data-cat="编程" data-pick="1" data-text="代码注释与文档自动生成器 基于源码一键产出可读、可解析的中文注释与接口文档 为存量代码补齐注释与接口文档，降低接手成本 注释 文档 技术写作 code comment">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">入门</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>代码注释与文档自动生成器</h3>
+    <p>基于源码一键产出可读、可解析的中文注释与接口文档</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a><a class="card" href="../prompt/g-117.html" data-cat="编程" data-pick="1" data-text="强制 json 结构化输出提示词 把自然语言需求转成可稳定触发大模型纯 json 输出的提示词与调用规范 让大模型稳定返回合规 json 的提示词工程模板 json 结构化输出 接口提示词 function calling">
+    <div class="badges"><span class="badge cat">Vibe Coding</span><span class="badge k">提示词</span><span class="badge g">AI</span><span class="badge diff">进阶</span><span class="badge pick">★ 搭子精选</span></div>
+    <h3>强制 JSON 结构化输出提示词</h3>
+    <p>把自然语言需求转成可稳定触发大模型纯 JSON 输出的提示词与调用规范</p>
+    <div class="meta"><span class="stars" title="搭子评分 5/5">★★★★★</span> 提示词搭子（AI 生成） · ⭐0</div>
+  </a></div></section>
+    </article></main>
+<footer class="site"><div class="wrap">
+  <p>内容来自公开开源仓库与本站 AI 原生生成，均保留原作者署名与协议。本页仅作聚合索引，版权归原作者所有。</p>
+  <p class="foot-contact">合作 / 反馈：<a href="mailto:promptdazi@agent.qq.com">promptdazi@agent.qq.com</a></p>
+  <p class="foot-copy">&copy; 2026 提示词搭子 PromptDazi · 最后更新 2026-07-15</p>
+</div></footer>
+<script src="../assets/app.js?v=3"></script>
+</body></html>
